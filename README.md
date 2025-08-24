@@ -1,74 +1,162 @@
+# ProposalAI
+
+A powerful AI-driven business proposal generator that helps professionals create compelling proposals in minutes, not hours. Built with React, Express, PostgreSQL, and Google's Gemini AI API.
+
 ## Overview
 
-ProposalAI is an AI-powered business proposal generator web application that allows users to create professional proposals using customizable templates and Google's Gemini AI. The application supports multiple user roles (analyst, consultant, product_manager) and provides comprehensive proposal management features including template creation, AI-powered proposal generation, and export capabilities to PDF and DOCX formats.
+ProposalAI is a comprehensive web application designed for consultants, analysts, and business professionals who need to generate professional proposals quickly and efficiently. The platform combines customizable templates with Google's Gemini AI to create tailored, high-quality business proposals.
 
-## User Preferences
+## Key Features
 
-Preferred communication style: Simple, everyday language.
+### 🚀 AI-Powered Generation
+- **Google Gemini Integration**: Leverage advanced AI to generate compelling proposal content
+- **Intelligent Content Creation**: AI understands context and creates professional, industry-specific proposals
+- **Multiple Tone Options**: Professional, casual, or persuasive writing styles
 
-## System Architecture
+### 📋 Template Management
+- **Pre-built Templates**: Ready-to-use templates for various industries and proposal types
+- **Custom Templates**: Create and manage your own reusable proposal templates
+- **Dynamic Placeholders**: Smart variable replacement for personalized proposals
+- **Role-based Access**: Templates shared based on user permissions
 
-### Frontend Architecture
-- **Framework**: React with TypeScript using Vite as the build tool
-- **UI Library**: Radix UI components with shadcn/ui design system
-- **Styling**: Tailwind CSS with custom theming support (light/dark modes)
-- **State Management**: TanStack Query for server state, React hooks for local state
-- **Routing**: Wouter for client-side routing
-- **Form Handling**: React Hook Form with Zod validation
-- **Authentication**: Cookie-based session management with Replit Auth integration
+### 👥 Multi-Role Support
+- **Analyst**: Full access to create templates, generate proposals, and manage content
+- **Consultant**: Access to assigned proposals and shared templates
+- **Product Manager**: Administrative oversight and team management
 
-### Backend Architecture
-- **Runtime**: Node.js with Express.js server
-- **Language**: TypeScript with ESM modules
-- **Database ORM**: Drizzle ORM for type-safe database operations
-- **API Design**: RESTful API with role-based access control
-- **Session Management**: Express sessions with PostgreSQL storage
-- **File Structure**: Monorepo structure with shared schema between client and server
+### 📄 Export Capabilities
+- **PDF Export**: Generate professional PDF documents ready for client presentation
+- **DOCX Export**: Create Microsoft Word documents for further editing
+- **Client-side Processing**: Fast, secure export without server dependencies
 
-### Data Storage
-- **Primary Database**: PostgreSQL with Neon serverless connection
-- **Schema Management**: Drizzle Kit for migrations and schema synchronization
-- **Session Storage**: PostgreSQL sessions table for authentication persistence
-- **Data Models**: Users, Templates, Proposals with relational structure
-- **Role-based Access**: Hierarchical permissions (analyst < consultant < product_manager)
+### 🔐 Security & Authentication
+- **Role-based Authorization**: Granular permissions based on user roles
+- **Session Management**: Persistent sessions with PostgreSQL storage
 
-### Authentication & Authorization
-- **Authentication Provider**: Replit OpenID Connect (OIDC)
-- **Session Management**: Express sessions with PostgreSQL store
-- **Authorization**: Role-based access control with middleware protection
-- **User Management**: Automatic user creation/update from OIDC claims
+### 💬 AI Chat Assistant
+- **Business Guidance**: Get advice on proposal writing and business strategy
+- **Industry Insights**: Industry-specific recommendations and best practices
+- **Template Suggestions**: AI-powered recommendations for template improvements
 
-### AI Integration
-- **AI Provider**: Google Gemini 2.5 Flash model
-- **Use Cases**: Template enhancement and professional proposal generation
-- **Input Processing**: Structured prompts with user context and template content
-- **Response Handling**: Markdown-formatted professional proposals
+## Technology Stack
 
-### Export Functionality
-- **PDF Export**: html2canvas for DOM rendering + jsPDF for PDF generation
-- **DOCX Export**: docx library for Microsoft Word document creation
-- **Client-side Processing**: Browser-based export without server dependencies
+### Frontend
+- **React 18** with TypeScript
+- **Vite** for fast development and building
+- **Tailwind CSS** for styling
+- **Radix UI** for accessible components
+- **React Hook Form** with Zod validation
+- **TanStack Query** for server state management
 
-### Development & Build
-- **Development Server**: Vite dev server with HMR support
-- **Build Process**: Vite for frontend, esbuild for backend bundling
-- **Type Safety**: Strict TypeScript configuration across the stack
-- **Code Quality**: Path mapping for clean imports and organized file structure
+### Backend
+- **Node.js** with Express.js
+- **TypeScript** with ES modules
+- **Drizzle ORM** for type-safe database operations
+- **PostgreSQL** with Neon serverless
+- **Express Sessions** for authentication
 
-## External Dependencies
+### AI & Services
+- **Google Gemini 2.5 Flash** for AI content generation
+- **Replit Auth** for authentication
+- **html2canvas + jsPDF** for PDF export
+- **docx library** for Word document generation
 
-### Core Infrastructure
-- **Database**: Neon PostgreSQL serverless database
-- **Authentication**: Replit OIDC provider for user authentication
-- **Session Storage**: connect-pg-simple for PostgreSQL session management
+## Getting Started
 
-### AI Services
-- **Google Gemini**: AI model for proposal generation and template enhancement
-- **API Integration**: Official Google GenAI SDK for reliable AI interactions
+### Prerequisites
+- Node.js 18+ installed
+- Access to Google Gemini API
 
-### Third-party Libraries
-- **UI Components**: Comprehensive Radix UI primitives for accessible components
-- **Export Libraries**: html2canvas and jsPDF for PDF export, docx for Word documents
-- **Form Management**: React Hook Form with Zod schema validation
-- **Date Handling**: date-fns for date manipulation and formatting
-- **Development Tools**: tsx for TypeScript execution, various Vite plugins for development experience
+### Installation & Setup
+
+1. **Clone the repository**
+   ```bash
+   git clone <your-repo-url>
+   cd proposal-ai
+   ```
+
+2. **Install dependencies**
+   ```bash
+   npm install
+   ```
+
+3. **Environment Setup**
+   Set up your environment variables in Replit Secrets:
+   - `DATABASE_URL`: Your PostgreSQL connection string
+   - `GEMINI_API_KEY`: Your Google Gemini API key
+   - `SESSION_SECRET`: A secure random string for session encryption
+
+4. **Database Setup**
+   ```bash
+   npm run db:push
+   ```
+
+5. **Start the development server**
+   ```bash
+   npm run dev
+   ```
+
+6. **Access the application**
+   Open your browser and navigate to the provided Replit URL or `http://localhost:5000`
+
+1. **Build the application**
+   ```bash
+   npm run build
+   ```
+
+2. **Start production server**
+   ```bash
+   npm start
+   ```
+
+## Usage Guide
+
+### Creating Your First Proposal
+
+1. **Login** using your Replit account
+2. **Select a Template** from the pre-built options or create your own
+3. **Fill in Details**: Client name, industry, services, objectives, timeline, and budget
+4. **Generate Proposal**: Click "Generate AI Proposal" to create your content
+5. **Review & Export**: Review the generated proposal and export as PDF or DOCX
+
+### Managing Templates
+
+1. Navigate to **Templates** page
+2. **Create New Template**: Use markdown with placeholders like `{{clientName}}`
+3. **Edit Existing**: Modify templates to fit your needs
+4. **Share Templates**: Templates are automatically shared based on user roles
+
+### Using AI Chat
+
+1. Access the **AI Chat** feature from any page
+2. Ask questions about proposal writing, industry practices, or get template suggestions
+3. Receive professional guidance and actionable advice
+
+## Project Structure
+
+```
+├── client/                 # React frontend application
+│   ├── src/
+│   │   ├── components/     # Reusable UI components
+│   │   ├── pages/          # Application pages
+│   │   ├── hooks/          # Custom React hooks
+│   │   ├── lib/            # Utility functions
+│   │   └── contexts/       # React contexts
+├── server/                 # Express.js backend
+│   ├── routes.ts           # API route definitions
+│   ├── storage.ts          # Database operations
+│   ├── gemini.ts           # AI integration
+│   └── localAuth.ts        # Authentication setup
+├── shared/                 # Shared TypeScript schemas
+└── README.md
+```
+
+## API Endpoints
+
+- `GET /api/user` - Get current user information
+- `GET /api/templates` - Fetch user templates
+- `POST /api/templates` - Create new template
+- `GET /api/proposals` - Fetch user proposals
+- `POST /api/proposals/generate` - Generate new proposal
+- `POST /api/chat` - AI chat interaction
+
