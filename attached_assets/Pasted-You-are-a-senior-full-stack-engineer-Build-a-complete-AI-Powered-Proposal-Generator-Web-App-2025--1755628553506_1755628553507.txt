@@ -1,0 +1,163 @@
+You are a senior full-stack engineer. Build a complete AI-Powered Proposal Generator Web App (2025) with the following requirements:
+
+🔹 Tech Stack
+
+Backend: Python, FastAPI
+
+Database: PostgreSQL
+
+LLM: Google Gemini API (official Python SDK)
+
+Frontend: React (Vite) + TailwindCSS
+
+Export Options: PDF & DOCX
+
+🔹 Functional Scope
+1. Authentication (with OTP Signup)
+
+User registers with: email, password, role (product_manager, analyst, consultant)
+
+Backend generates 6-digit OTP and sends it via email (use SMTP or SendGrid API)
+
+OTP is stored in DB with expiration (5 min)
+
+User must verify OTP before login is allowed
+
+JWT-based login after verification
+
+Passwords must be securely hashed with bcrypt
+
+2. Templates
+
+CRUD operations for Markdown templates
+
+Store title + content (with placeholders like {{clientName}})
+
+3. Proposal Generation (Gemini API)
+
+Endpoint: POST /api/proposals/generate
+
+Input: clientName, industry, services[], objectives, scope, timeline, budget, tone, optional templateId
+
+Backend merges template + inputs → sends structured context to Gemini → returns refined Markdown proposal
+
+Store proposals linked to user
+
+4. Proposals Management
+
+Save generated proposals in DB
+
+List proposals for logged-in user
+
+Retrieve single proposal by ID
+
+5. Frontend UI/UX
+
+Signup with OTP Flow:
+
+Enter email + password + role
+
+Receive OTP by email
+
+Enter OTP → account verified
+
+Login Page: email + password
+
+Two-Pane Layout:
+
+Left: proposal input form (fields + template picker)
+
+Right: live Markdown preview + export buttons
+
+Top bar: login/logout, role badge
+
+Dark/Light Mode Toggle (save preference)
+
+Professional UI for consultants & managers
+
+6. Export Features
+
+Export proposal as PDF (html2canvas + jsPDF)
+
+Export proposal as DOCX (docx library)
+
+🔹 Backend Requirements
+
+FastAPI + PostgreSQL (SQLAlchemy ORM)
+
+JWT Auth with role-based access control
+
+OTP Table schema: {id, user_id, otp_code, expires_at, is_used}
+
+Email sending for OTP (SMTP/SendGrid)
+
+Secure password hashing (bcrypt via passlib)
+
+Proper error handling with JSON responses
+
+🔹 Frontend Requirements
+
+React + Vite + TailwindCSS
+
+Axios for API calls
+
+Pages:
+
+Signup (with OTP)
+
+Login
+
+Template Management
+
+Proposal Generator (input form + preview + export)
+
+Toast alerts for success/errors
+
+Fully responsive with dark/light mode
+
+🔹 API Contracts
+Auth
+
+POST /api/auth/register {email, password, role} → generates OTP
+
+POST /api/auth/verify-otp {email, otp} → verifies user
+
+POST /api/auth/login {email, password} → returns {access_token, role}
+
+Templates
+
+GET /api/templates
+
+POST /api/templates {title, content}
+
+PUT /api/templates/{id}
+
+DELETE /api/templates/{id}
+
+Proposals
+
+POST /api/proposals/generate → {id, markdown, created_at}
+
+GET /api/proposals
+
+GET /api/proposals/{id}
+
+🔹 Extra Notes
+
+Roles:
+
+Analyst → create/generate proposals
+
+Consultant → view assigned proposals
+
+Product Manager → manage all proposals & templates
+
+OTP verification must be required before login
+
+UI must look impressive, professional, consulting-grade
+
+🔹 Directory Structure
+proposal-gen/
+├─ backend/   (FastAPI + PostgreSQL + Gemini + OTP)
+├─ frontend/  (React + Tailwind + Vite)
+└─ README.md  (setup steps, run instructions)

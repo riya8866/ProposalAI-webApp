@@ -1,0 +1,92 @@
+AI-Powered Proposal Generator project (with MongoDB, FastAPI, React, Gemini).
+
+📝 Main Functionalities
+1. Authentication & Authorization
+
+✅ Register & Login (with JWT tokens)
+
+✅ Password hashing (bcrypt via passlib)
+
+✅ Roles:
+
+Analyst → can create proposals, use templates
+
+Manager → can view all proposals, manage templates
+
+2. Template Management (Markdown-based)
+
+✅ CRUD for templates (create, read, update, delete)
+
+✅ Templates contain placeholders like {{clientName}}, {{services}}, etc.
+
+✅ Stored in MongoDB with title, content, created_by
+
+✅ Analysts manage their own templates, managers can view all
+
+3. Proposal Generation (AI-powered)
+
+✅ Form-based input: clientName, industry, services[], objectives, scope, timeline, budget, tone, templateId?
+
+✅ Merge inputs into selected template using md_utils
+
+✅ Call Google Gemini API to refine and enhance into professional Markdown proposal
+
+✅ Save generated proposal (Markdown + metadata) into MongoDB
+
+4. Proposals Management
+
+✅ Save generated proposals per user
+
+✅ List proposals (analyst sees own, manager sees all)
+
+✅ View single proposal by ID
+
+✅ Stored as: id, owner_id, template_id?, payload_json, markdown, created_at
+
+5. Export Functionality (Frontend)
+
+✅ Export to PDF (using html2canvas + jspdf)
+
+✅ Export to DOCX (using docx npm library)
+
+✅ Runs in browser (no backend dependency for export)
+
+6. User Interface (React + Tailwind)
+
+✅ Login page (email + password, stores JWT in localStorage)
+
+✅ Home page with two-pane layout:
+
+Left → Proposal Form + Template Picker
+
+Right → Live Markdown Preview + Export Buttons
+
+✅ Topbar: app name, role badge, login/logout
+
+✅ Responsive design (works on desktop & mobile)
+
+7. Supporting Features
+
+✅ CORS enabled (Frontend ↔ Backend)
+
+✅ Error handling (clear JSON errors for 4xx/5xx)
+
+✅ Health check endpoint (/health)
+
+✅ Clean environment config (.env for secrets, DB URL, Gemini API key)
+
+🎯 Summary
+
+The core features we’re building are:
+
+Secure auth system (JWT + roles)
+
+Template management (Markdown + placeholders)
+
+AI-powered proposal generation with Gemini
+
+Proposal saving, viewing, and listing
+
+Export proposals as PDF/DOCX
+
+Modern, responsive UI with live preview
